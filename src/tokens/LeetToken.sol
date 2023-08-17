@@ -70,6 +70,7 @@ contract LeetToken is ERC20, Ownable {
     error MaxWalletReached();
     error TimestampIsInThePast();
     error FeeTooHigh();
+    error MaxWalletAmountTooLow();
     error InvalidFeeRecipient();
     error TransferFailed();
     error ArrayLengthMismatch();
@@ -342,6 +343,12 @@ contract LeetToken is ERC20, Ownable {
     }
 
     function setMaxWalletAmount(uint256 amount) external onlyOwner {
+        // lower cap on max wallet amount is 0.1% of total supply,
+        // which is 1% of the initial circulating supply according
+        // to the LEET tokenomics (10% circulating supply at launch)
+        if (amount < totalSupply() / 1e3) {
+            revert MaxWalletAmountTooLow();
+        }
         maxWalletAmount = amount;
     }
 
