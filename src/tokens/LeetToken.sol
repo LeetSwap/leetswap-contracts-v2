@@ -54,7 +54,6 @@ contract LeetToken is ERC20, Ownable {
     bool public maxWalletEnabled;
 
     mapping(address => bool) public isExcludedFromFee;
-    mapping(address => bool) public isBot;
 
     mapping(address => bool) internal _isLeetPair;
     mapping(address => bool) internal _isExcludedFromMaxWallet;
@@ -483,13 +482,5 @@ contract LeetToken is ERC20, Ownable {
 
     function setSwapPairToken(address _swapPairToken) public onlyOwner {
         swapPairToken = _swapPairToken;
-    }
-
-    function addBot(address account) public onlyOwner {
-        isBot[account] = true;
-    }
-
-    function removeBot(address account) public onlyOwner {
-        isBot[account] = false;
     }
 }
