@@ -259,6 +259,9 @@ contract TestLeetToken is Test {
     }
 
     function testSwappingFeesOnTransfer() public {
+        vm.prank(leet.owner());
+        leet.setBuyFees(0, 0, 0, 10);
+
         testBuyTax();
         vm.warp(block.timestamp);
 
@@ -281,6 +284,9 @@ contract TestLeetToken is Test {
     }
 
     function testSwappingFeesOnSells() public {
+        vm.prank(leet.owner());
+        leet.setBuyFees(0, 0, 0, 10);
+
         testBuyTax();
         vm.warp(block.timestamp);
 
