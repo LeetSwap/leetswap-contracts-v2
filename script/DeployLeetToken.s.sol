@@ -126,6 +126,9 @@ contract DeployLeetToken is Test {
             block.timestamp + 10 minutes
         );
 
+        address pair = factory.getPair(address(leet), address(pairToken));
+        console.log("Pair: ", pair);
+
         uint256 lpTokenBalance = lpToken.balanceOf(sender);
         assertEq(liquidity, lpTokenBalance);
 
