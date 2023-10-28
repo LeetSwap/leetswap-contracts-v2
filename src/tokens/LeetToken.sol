@@ -99,7 +99,7 @@ contract LeetToken is ERC20, Ownable {
 
         burnSellFee = 0;
         farmsSellFee = 0;
-        stakingSellFee = 0;
+        stakingSellFee = 150;
         treasurySellFee = 150;
         setSellFees(burnSellFee, farmsSellFee, stakingSellFee, treasurySellFee);
 
